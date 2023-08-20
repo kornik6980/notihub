@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Twitter Clone",
+	title: "NotiHub",
 	description: "A Next.js 13 Twitter Clone Application",
 };
 
