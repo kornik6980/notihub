@@ -11,30 +11,30 @@ import Bottombar from "@/components/shared/Bottombar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "NotiHub",
-	description: "A Next.js 13 Twitter Clone Application",
+  title: "NotiHub",
+  description: "A Next.js 13 Twitter Clone Application",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<ClerkProvider>
-			<html lang="en">
-				<body className={inter.className}>
-					<Topbar />
-					<main>
-						<LeftSidebar />
-						<section className="main-container">
-							<div className="w-full max-w-4xl">{children}</div>
-						</section>
-						<RightSidebar />
-					</main>
-					<Bottombar />
-				</body>
-			</html>
-		</ClerkProvider>
-	);
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Topbar />
+          <main className="flex flex-row">
+            <LeftSidebar />
+            <section className="main-container">
+              <div className="w-full max-w-4xl">{children}</div>
+            </section>
+            <RightSidebar />
+          </main>
+          <Bottombar />
+        </body>
+      </html>
+    </ClerkProvider>
+  );
 }
