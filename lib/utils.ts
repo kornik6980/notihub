@@ -28,12 +28,12 @@ export function formatDateString(dateString: string) {
 	return `${time} - ${formattedDate}`;
 }
 
-export function formatThreadCount(count: number): string {
+export function formatNotiCount(count: number): string {
 	if (count === 0) {
-		return "No Threads";
+		return "No Notis";
 	} else {
-		const threadCount = count.toString().padStart(2, "0");
-		const threadWord = count === 1 ? "Thread" : "Threads";
-		return `${threadCount} ${threadWord}`;
+		const notiCount = count.toString().padStart(2, "0");
+		const notiWord = count === 1 ? "Noti" : "Notis";
+		return `${notiCount} ${notiWord}`;
 	}
 }
