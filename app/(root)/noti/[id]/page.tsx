@@ -1,4 +1,5 @@
 import NotiCard from "@/components/cards/NotiCard";
+import Comment from "@/components/forms/Comment";
 import { fetchNotiById } from "@/lib/actions/noti.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
@@ -29,6 +30,31 @@ const Page = async ({ params }: { params: { id: string } }) => {
 					createdAt={noti.createdAt}
 					comments={noti.children}
 				/>
+			</div>
+
+			<div className="mt-7">
+				<Comment
+					notiId={noti._id}
+					currentUserImage={userInfo.image}
+					currentUserId={JSON.stringify(userInfo._id)}
+				/>
+			</div>
+
+			<div className="mt-10">
+				{noti.children.map((comment: any) => (
+					<NotiCard
+						key={comment._id}
+						id={comment._id}
+						currentUser={user?.id || ""}
+						parentId={comment.parentId}
+						content={comment.text}
+						author={comment.author}
+						community={comment.community}
+						createdAt={comment.createdAt}
+						comments={comment.children}
+						isComment
+					/>
+				))}
 			</div>
 		</section>
 	);

@@ -15,8 +15,7 @@ async function Page() {
 	return (
 		<>
 			<h1 className="head-text">Create Noti</h1>
-
-			<PostNoti userId={userInfo._id} />
+			<PostNoti userId={JSON.stringify(userInfo._id)} />
 		</>
 	);
 }

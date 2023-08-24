@@ -18,7 +18,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { NotiValidation } from "@/lib/validations/noti";
 import { createNoti } from "@/lib/actions/noti.actions";
 
-function PostNoti({ userId }: { userId: string }) {
+const PostNoti = ({ userId }: { userId: string }) => {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -69,6 +69,6 @@ function PostNoti({ userId }: { userId: string }) {
 			</form>
 		</Form>
 	);
-}
+};
 
 export default PostNoti;

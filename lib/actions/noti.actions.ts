@@ -98,3 +98,41 @@ export async function fetchNotiById(id: string) {
 		throw new Error(`Error fetching noti: ${err.message}`);
 	}
 }
+
+export async function addCommentToNoti({
+	notiId,
+	commentText,
+	userId,
+	path,
+}: {
+	notiId: string;
+	commentText: string;
+	userId: string;
+	path: string;
+}) {
+	try {
+		connectToDB();
+
+		const originalNoti = await Noti.findById(notiId);
+
+		if (!originalNoti) {
+			throw new Error("Noti not found");
+		}
+
+		const commentNoti = new Noti({
+			text: commentText,
+			author: userId,
+			parentId: notiId,
+		});
+
+		const savedCommentNoti = await commentNoti.save();
+
+		originalNoti.children.push(savedCommentNoti._id);
+
+		await originalNoti.save();
+
+		revalidatePath(path);
+	} catch (err: any) {
+		throw new Error(`Error adding comment to noti: ${err.message}`);
+	}
+}
