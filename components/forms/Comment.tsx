@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { CommentValidation } from "@/lib/validations/noti";
 import Image from "next/image";
@@ -26,7 +26,6 @@ interface Props {
 }
 
 const Comment = ({ notiId, currentUserImage, currentUserId }: Props) => {
-	const router = useRouter();
 	const pathname = usePathname();
 
 	const form = useForm({
