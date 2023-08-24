@@ -15,7 +15,7 @@ function Bottombar() {
 					const isActive =
 						(pathname.includes(link.route) && link.route.length > 1) ||
 						pathname === link.route;
-
+					//TODO: add link for own profile page
 					return (
 						<Link
 							href={link.route}

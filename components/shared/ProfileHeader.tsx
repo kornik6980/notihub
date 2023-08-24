@@ -17,7 +17,7 @@ const ProfileHeader = ({
 }: Props) => {
 	return (
 		<div>
-			<h1>profile header</h1>
+			<h1>profi le header</h1>
 		</div>
 	);
 };
