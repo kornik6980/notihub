@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
+import Noti from "../models/noti.model";
 
 interface Params {
 	userId: string;
@@ -53,5 +54,26 @@ export async function fetchUser(userId: string) {
 		}); /* .populate({path: "communities", model: Community}) */
 	} catch (err: any) {
 		throw new Error(`Failed to fetch user: ${err.message}`);
+	}
+}
+
+export async function fetchUserNotis(userId: string) {
+	try {
+		connectToDB();
+
+		// TODO: populate community
+		const notis = await User.findOne({ id: userId }).populate({
+			path: "notis",
+			model: Noti,
+			populate: {
+				path: "children",
+				model: Noti,
+				populate: { path: "author", model: User, select: "name image id" },
+			},
+		});
+
+		return notis;
+	} catch (err: any) {
+		throw new Error(`Failed to fetch user notis: ${err.message}`);
 	}
 }
