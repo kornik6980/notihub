@@ -10,7 +10,6 @@ interface Props {
 
 const NotisTab = async ({ currentUserId, accountId, accountType }: Props) => {
 	let result = await fetchUserNotis(accountId);
-	console.log(result.notis);
 
 	if (!result) redirect("/");
 
@@ -32,7 +31,7 @@ const NotisTab = async ({ currentUserId, accountId, accountType }: Props) => {
 									id: noti.author.id,
 							  }
 					}
-					community={noti.community} //TODO
+					community={noti.community} // TODO
 					createdAt={noti.createdAt}
 					comments={noti.children}
 				/>

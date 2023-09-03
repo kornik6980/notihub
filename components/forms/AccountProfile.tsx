@@ -130,7 +130,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 										alt="profile photo"
 										width={24}
 										height={24}
-										className="object-contain"
+										className="rounded-full object-contain"
 									/>
 								)}
 							</FormLabel>
