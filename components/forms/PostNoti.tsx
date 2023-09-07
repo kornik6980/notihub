@@ -34,7 +34,6 @@ const PostNoti = ({ userId }: { userId: string }) => {
 		await createNoti({
 			text: values.noti,
 			author: userId,
-			communityId: null,
 			path: pathname,
 		});
 

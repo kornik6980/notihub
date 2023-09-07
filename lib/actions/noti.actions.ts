@@ -8,18 +8,16 @@ import { connectToDB } from "../mongoose";
 interface Params {
 	text: string;
 	author: string;
-	communityId: string | null;
 	path: string;
 }
 
-export async function createNoti({ text, author, communityId, path }: Params) {
+export async function createNoti({ text, author, path }: Params) {
 	try {
 		connectToDB();
 
 		const createdNoti = await Noti.create({
 			text,
 			author,
-			community: null,
 		});
 
 		await User.findByIdAndUpdate(author, {
@@ -69,7 +67,6 @@ export async function fetchNotis(pageNumber = 1, pageSize = 20) {
 export async function fetchNotiById(id: string) {
 	try {
 		connectToDB();
-		// TODO: Populate community
 		const noti = await Noti.findById(id)
 			.populate({ path: "author", model: "User", select: "_id id name image" })
 			.populate({

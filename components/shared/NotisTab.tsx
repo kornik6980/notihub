@@ -31,7 +31,6 @@ const NotisTab = async ({ currentUserId, accountId, accountType }: Props) => {
 									id: noti.author.id,
 							  }
 					}
-					community={noti.community} // TODO
 					createdAt={noti.createdAt}
 					comments={noti.children}
 				/>

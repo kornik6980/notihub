@@ -23,7 +23,6 @@ export default async function Home() {
 								parentId={noti.parentId}
 								content={noti.text}
 								author={noti.author}
-								community={noti.community}
 								createdAt={noti.createdAt}
 								comments={noti.children}
 							/>

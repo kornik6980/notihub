@@ -52,7 +52,7 @@ export async function fetchUser(userId: string) {
 
 		return await User.findOne({
 			id: userId,
-		}); /* .populate({path: "communities", model: Community}) */
+		});
 	} catch (err: any) {
 		throw new Error(`Failed to fetch user: ${err.message}`);
 	}
@@ -62,7 +62,6 @@ export async function fetchUserNotis(userId: string) {
 	try {
 		connectToDB();
 
-		// TODO: populate community
 		const notis = await User.findOne({ id: userId }).populate({
 			path: "notis",
 			model: Noti,

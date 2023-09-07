@@ -26,7 +26,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
 					parentId={noti.parentId}
 					content={noti.text}
 					author={noti.author}
-					community={noti.community}
 					createdAt={noti.createdAt}
 					comments={noti.children}
 				/>
@@ -49,7 +48,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
 						parentId={comment.parentId}
 						content={comment.text}
 						author={comment.author}
-						community={comment.community}
 						createdAt={comment.createdAt}
 						comments={comment.children}
 						isComment

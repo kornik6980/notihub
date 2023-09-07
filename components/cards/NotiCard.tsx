@@ -1,3 +1,4 @@
+import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,11 +12,6 @@ interface Props {
 		name: string;
 		image: string;
 	};
-	community: {
-		id: string;
-		name: string;
-		image: string;
-	} | null;
 	createdAt: string;
 	comments: {
 		author: {
@@ -31,7 +27,6 @@ const NotiCard = ({
 	parentId,
 	content,
 	author,
-	community,
 	createdAt,
 	comments,
 	isComment,
@@ -109,7 +104,16 @@ const NotiCard = ({
 						</div>
 					</div>
 				</div>
+				{/* TODO: delete noti */}
+				{/* TODO: show logos */}
 			</div>
+			{!isComment && (
+				<div className="flex mt-5 items-center">
+					<p className="text-subtle-medium text-gray-1">
+						{formatDateString(createdAt)}
+					</p>
+				</div>
+			)}
 		</article>
 	);
 };
