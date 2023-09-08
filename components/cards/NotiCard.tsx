@@ -68,7 +68,7 @@ const NotiCard = ({
 									className="cursor-pointer object-contain"
 								/>
 
-								<Link href={`/noti/${id}`}>
+								<Link href={`/noti/${id}`} className="flex flex-row gap-1">
 									<Image
 										src="/assets/reply.svg"
 										alt="heart"
@@ -76,6 +76,13 @@ const NotiCard = ({
 										height={24}
 										className="cursor-pointer object-contain"
 									/>
+									{comments.length > 0 && (
+										<Link href={`/noti/${id}`}>
+											<p className="mt-1 text-subtle-medium text-gray-1">
+												{comments.length} replies
+											</p>
+										</Link>
+									)}
 								</Link>
 
 								<Image
@@ -85,22 +92,7 @@ const NotiCard = ({
 									height={24}
 									className="cursor-pointer object-contain"
 								/>
-								<Image
-									src="/assets/share.svg"
-									alt="heart"
-									width={24}
-									height={24}
-									className="cursor-pointer object-contain"
-								/>
 							</div>
-
-							{isComment && comments.length > 0 && (
-								<Link href={`/noti/${id}`}>
-									<p className="mt-1 text-subtle-medium text-gray-1">
-										{comments.length} replies
-									</p>
-								</Link>
-							)}
 						</div>
 					</div>
 				</div>
