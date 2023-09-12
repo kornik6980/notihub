@@ -57,7 +57,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 							className="w-full text-light-1"
 						>
 							<NotisTab
-								currentUserId={user.id}
+								currentUserId={userInfo._id}
 								accountId={userInfo.id}
 								accountType="User"
 							/>

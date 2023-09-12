@@ -22,12 +22,13 @@ const Page = async ({ params }: { params: { id: string } }) => {
 				<NotiCard
 					key={noti._id}
 					id={noti._id}
-					currentUser={user?.id || ""}
+					currentUser={userInfo._id || ""}
 					parentId={noti.parentId}
 					content={noti.text}
 					author={noti.author}
 					createdAt={noti.createdAt}
 					comments={noti.children}
+					likes={noti.likes}
 				/>
 			</div>
 
@@ -44,12 +45,13 @@ const Page = async ({ params }: { params: { id: string } }) => {
 					<NotiCard
 						key={comment._id}
 						id={comment._id}
-						currentUser={user?.id || ""}
+						currentUser={userInfo._id || ""}
 						parentId={comment.parentId}
 						content={comment.text}
 						author={comment.author}
 						createdAt={comment.createdAt}
 						comments={comment.children}
+						likes={noti.likes}
 						isComment
 					/>
 				))}

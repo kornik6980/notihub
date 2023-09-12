@@ -1,10 +1,14 @@
 import NotiCard from "@/components/cards/NotiCard";
 import { fetchNotis } from "@/lib/actions/noti.actions";
+import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 
 export default async function Home() {
 	const result = await fetchNotis(1, 30);
 	const user = await currentUser();
+	if (!user) return null;
+
+	const userInfo = await fetchUser(user.id);
 
 	return (
 		<>
@@ -19,12 +23,13 @@ export default async function Home() {
 							<NotiCard
 								key={noti._id}
 								id={noti._id}
-								currentUser={user?.id || ""}
+								currentUser={userInfo._id || ""}
 								parentId={noti.parentId}
 								content={noti.text}
 								author={noti.author}
 								createdAt={noti.createdAt}
 								comments={noti.children}
+								likes={noti.likes}
 							/>
 						))}
 					</>

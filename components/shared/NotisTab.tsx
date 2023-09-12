@@ -33,6 +33,7 @@ const NotisTab = async ({ currentUserId, accountId, accountType }: Props) => {
 					}
 					createdAt={noti.createdAt}
 					comments={noti.children}
+					likes={noti.likes}
 				/>
 			))}
 		</section>

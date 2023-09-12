@@ -11,6 +11,12 @@ const notiSchema = new mongoose.Schema({
 			ref: "Noti",
 		},
 	],
+	likes: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+		},
+	],
 });
 
 const Noti = mongoose.models.Noti || mongoose.model("Noti", notiSchema);

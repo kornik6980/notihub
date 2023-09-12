@@ -1,6 +1,7 @@
 import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import LikeButton from "../shared/LikeButton";
 
 interface Props {
 	id: string;
@@ -18,6 +19,7 @@ interface Props {
 			image: string;
 		};
 	}[];
+	likes: [];
 	isComment?: boolean;
 }
 
@@ -29,6 +31,7 @@ const NotiCard = ({
 	author,
 	createdAt,
 	comments,
+	likes,
 	isComment,
 }: Props) => {
 	return (
@@ -60,30 +63,37 @@ const NotiCard = ({
 
 						<div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
 							<div className="flex gap-3.5">
-								<Image
-									src="/assets/heart-gray.svg"
-									alt="heart"
-									width={24}
-									height={24}
-									className="cursor-pointer object-contain"
-								/>
-
-								<Link href={`/noti/${id}`} className="flex flex-row gap-1">
-									<Image
-										src="/assets/reply.svg"
-										alt="heart"
-										width={24}
-										height={24}
-										className="cursor-pointer object-contain"
+								<div className="flex flex-row gap-1">
+									<LikeButton
+										notiId={id.toString()}
+										userId={currentUser.toString()}
+										likes={likes.map((like: any) => like.toString())}
 									/>
-									{comments.length > 0 && (
-										<Link href={`/noti/${id}`}>
-											<p className="mt-1 text-subtle-medium text-gray-1">
-												{comments.length} replies
-											</p>
-										</Link>
+									{likes?.length > 0 && (
+										<p className="mt-1 text-subtle-medium text-gray-1">
+											{`${likes.length} ${likes.length > 1 ? "likes" : "like"}`}
+										</p>
 									)}
-								</Link>
+								</div>
+
+								<div className="flex flex-row gap-1">
+									<Link href={`/noti/${id}`}>
+										<Image
+											src="/assets/reply.svg"
+											alt="heart"
+											width={24}
+											height={24}
+											className="cursor-pointer object-contain"
+										/>
+									</Link>
+									{comments.length > 0 && (
+										<p className="mt-1 text-subtle-medium text-gray-1">
+											{`${comments.length} ${
+												comments.length > 1 ? "replies" : "reply"
+											}`}
+										</p>
+									)}
+								</div>
 
 								<Image
 									src="/assets/repost.svg"
@@ -96,8 +106,6 @@ const NotiCard = ({
 						</div>
 					</div>
 				</div>
-				{/* TODO: delete noti */}
-				{/* TODO: show logos */}
 			</div>
 			{!isComment && (
 				<div className="flex mt-5 items-center">

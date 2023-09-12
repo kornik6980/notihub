@@ -133,3 +133,36 @@ export async function addCommentToNoti({
 		throw new Error(`Error adding comment to noti: ${err.message}`);
 	}
 }
+
+export async function handleLike({
+	notiId,
+	userId,
+	path,
+}: {
+	notiId: string;
+	userId: string;
+	path: string;
+}) {
+	try {
+		connectToDB();
+
+		const noti = await Noti.findById(notiId);
+		if (!noti) {
+			throw new Error("Noti not found");
+		}
+
+		if (noti.likes.includes(userId)) {
+			noti.likes = noti.likes.filter(
+				(likeId: any) => likeId.toString() !== userId
+			);
+		} else {
+			noti.likes.push(userId);
+		}
+
+		await noti.save();
+
+		revalidatePath(path);
+	} catch (err: any) {
+		throw new Error(`Error toggling like on noti: ${err.message}`);
+	}
+}
