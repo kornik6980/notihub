@@ -1,9 +1,11 @@
+import { redirect } from "next/navigation";
+import { currentUser } from "@clerk/nextjs";
+
 import NotiCard from "@/components/cards/NotiCard";
 import Pagination from "@/components/shared/Pagination";
 
 import { fetchNotis } from "@/lib/actions/noti.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
 
 export default async function Home({
 	searchParams,
@@ -11,7 +13,7 @@ export default async function Home({
 	searchParams: { [key: string]: string | undefined };
 }) {
 	const user = await currentUser();
-	if (!user) return null;
+	if (!user) redirect("/sign-in");
 
 	const userInfo = await fetchUser(user.id);
 
